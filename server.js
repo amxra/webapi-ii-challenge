@@ -163,3 +163,5 @@ server.put('/api/posts/:id', (req, res) =>{
         })
     }
 })
+
+module.exports = server
