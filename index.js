@@ -76,6 +76,27 @@ server.get('/api/posts', (req,res) =>{
     
 })
 
+server.get('api/posts/:id', (res,req) =>{
+    const { id } = req.params.id
+
+    db.findById(id)
+    .then(post =>{ // finds post
+        if(post.length > 0){
+            res.status(200).json(post)
+        }
+        else{ // post with id not found
+            res.status(404).json({
+                message: "The post with the specified ID does not exist."
+            })
+        }
+    })
+    .catch(error => { //error in getting post from database
+        res.status(500).json({
+        error: "The post information could not be retrieved."
+        })
+    })
+})
+
 
 server.listen(process.env.PORT || 3000, () => {
     console.log('listening on port ' + (process.env.PORT || 3000))
