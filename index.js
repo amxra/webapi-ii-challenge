@@ -1,7 +1,4 @@
-const express = require('express');
-
-const server = express()
-
+const servert = require('./server')
 server.use(express.json())
 
 const db = require('./data/db')

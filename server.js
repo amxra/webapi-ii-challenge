@@ -1,3 +1,6 @@
+const express = require('express');
+const server = express()
+
 //Endpoints
 
 server.post('/api/posts', (req,res) => {
