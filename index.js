@@ -97,6 +97,28 @@ server.get('api/posts/:id', (res,req) =>{
     })
 })
 
+server.get('/api/posts/:id/comments', (req, res) =>{
+    const {id} = req.params.id
+
+    db.findCommentById(id)
+    .then(comment =>{
+        if(comment.length > 0){
+            res.status(200).json(comment)
+        }
+        else{
+            res.status(404).json({
+                message: "The post with the specified ID does not exist."
+            })
+        }
+    })
+
+    .catch(() =>{
+        res.status(500).json({
+        error: "The comments information could not be retrieved." 
+        })
+    })
+})
+
 
 server.listen(process.env.PORT || 3000, () => {
     console.log('listening on port ' + (process.env.PORT || 3000))
