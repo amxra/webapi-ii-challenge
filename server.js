@@ -7,7 +7,7 @@ server.use(express.json());
 server.use('/api/posts', posts);
 
 server.get('/', (req,res) => {
-    res.json('Welcome to my api')
+    res.json('Hello world!')
 });
 
 module.exports = server;
