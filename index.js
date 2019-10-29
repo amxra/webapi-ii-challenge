@@ -55,6 +55,27 @@ server.post('/:id/comments', (req,res) => {
         })
 })
 
+server.get('/api/posts', (req,res) =>{
+    db.find()
+    .then(post => {
+        if(post){ // post is found, responds with post
+            res.status(200).json(posts)
+        }
+        else{ // post doesn't exist respond with message
+            res.status(400).json({
+                message: 'Post does not exist'
+            })
+        }
+    })
+
+    .catch(error => {
+        res.status(500).json({ // error with server, responds with error
+            error: "The posts information could not be retrieved." 
+        })
+    })
+    
+})
+
 
 server.listen(process.env.PORT || 3000, () => {
     console.log('listening on port ' + (process.env.PORT || 3000))
